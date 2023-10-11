@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .sector {
+            display: inline-block;
+            width: 100px;
+            height: 100px ;
+            background-color: #EEEEEE;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover-1, .cover-2 {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #eee;
+        }
+        .cover-1{
+            background-color: #4C84FF;
+            transform-origin: right;
+            transform: rotate(102deg); 
+        }
+        .cover-2 {
+            left: 50%;
+            transform-origin: left;
+            transform: rotate(28deg);
+            transition: all ;
+            animation: 
+             duration timing-function delay iteration-count direction fill-mode;
+                
+        }
+
+    
+    </style>
+</head>
+<body>
+    <div class="sector">
+        <span class="cover-1"></span>
+        <span class="cover-2"></span>
+    </div>
+</body>
