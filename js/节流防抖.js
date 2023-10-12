@@ -9,7 +9,7 @@ function debounce(fn,delay) {
 }
 //节流
 function throttle(fn ,delay){
-    let timer
+    let timer;
     return () => {
         if(timer) return;
         timer = setTimeout(()=>{
@@ -17,5 +17,4 @@ function throttle(fn ,delay){
             clearTimeout(timer);
         },delay)
     }
-
 }
