@@ -36,6 +36,6 @@
  * Array.from()
  * 
  * 判断是否为数组
- * Array.isArray() //true 是 ，false 不是
+ * Array.isArray()    //true 是 ，false 不是
  * 
  */
