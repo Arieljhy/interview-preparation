@@ -7,5 +7,3 @@ function flat1(arr){
     return arr 
 }
 console.log(flat1(arr));
-
-
