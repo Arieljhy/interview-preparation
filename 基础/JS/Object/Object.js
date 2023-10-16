@@ -12,6 +12,7 @@ const is = (x, y) => {
     }
 }
 /**
- * Object.assign
+ * Object.assign() 
+ * 是浅拷贝
  */
 
