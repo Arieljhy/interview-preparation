@@ -33,6 +33,8 @@
   
  ### 转化 为 数组
  - Array.from()
+ - 扩展运算符
+ - Array.prototype.slice.call()
   
  ### 判断 是否为 数组
  - Array.isArray()    //true 是 ，false 不是
