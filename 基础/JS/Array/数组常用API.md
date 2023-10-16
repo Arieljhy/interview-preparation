@@ -31,7 +31,7 @@
  - toString()
  - toLocalString()
   
- ### 转化 为 数组
+ ### 类数组 转化 为 数组
  - Array.from()
  - 扩展运算符
  - Array.prototype.slice.call()

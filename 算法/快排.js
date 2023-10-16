@@ -1,3 +1,7 @@
+/**
+ * 快排思想：
+ *    给定一个数组，选取一个基准值，小于基准值 放在左边，大于基准值 放在右边
+ */
 let arr = [10,2,7,4,1,1,2,4,6,8,1,1,34,56,7,9,33];
 const quickSort = (arr , left = 0 , right = arr.length -1) => {
     if(left < right){
@@ -35,15 +39,11 @@ const partition1 = (arr,left,right) => {
 /**
  * 结合 api 简化版
  */
-const quickSortSimple = (arr,left,right) => {
-    let res = [];
-    if(left < right){
-        let priot = arr.pop();
-        let partLeft = arr.filter((num)=>num<=priot);
-        let partRight = arr.filter((num)=>num>priot);
-        res = [...quickSortSimple(partLeft,0,partLeft.length-1),priot,...quickSortSimple(partRight,0,partRight.length-1)];
-    }
-    return res;
-
+const quickSortSimple = (arr) => {
+    if(arr.length < 2) return arr
+    let priot = arr.pop();
+    let partLeft = arr.filter((num)=>num<=priot);
+    let partRight = arr.filter((num)=>num>priot);
+    return [...quickSortSimple(partLeft,0,partLeft.length-1),priot,...quickSortSimple(partRight,0,partRight.length-1)];
 }
-console.log("quickSortSimple:",quickSortSimple(arr,0,arr.length-1));
+console.log("quickSortSimple:",quickSortSimple(arr));
