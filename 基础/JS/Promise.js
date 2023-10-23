@@ -95,7 +95,7 @@ class myPromise{
           let count = 0;
           if(promiseArr.length === 0) return resolve([])
           for(let i = 0 ; i < promiseArr.length ; i++){
-            promiseArr[i].then((val)=>{
+            myPromise.resolve(promiseArr[i]).then((val)=>{
               count++;
               res.push(val);
               if(count === promiseArr.length) return resolve(res);
@@ -103,7 +103,7 @@ class myPromise{
               reject(err);
             })
           }
-      }).catch(err=>reject(err))
+      })
 
     }
     static allSettled(promiseArr){
@@ -112,7 +112,7 @@ class myPromise{
         let count = 0;
         for(let i = 0 ; i < promiseArr.length ; i++){
        
-          promiseArr[i].then((val)=>{
+          myPromise.resolve(promiseArr[i]).then((val)=>{
             count++;
             res[i] = {status:'fulfilled',value:val}
             if(count === promiseArr.length){
@@ -132,7 +132,7 @@ class myPromise{
       return myPromise((resolve,reject)=>{
         if(promiseArr.length === 0) return resolve()
         for(let i = 0 ; i < promiseArr.length ; i++){
-          promiseArr[i].then((val)=>{
+         myPromise.resolve(promiseArr[i]).then((val)=>{
             resolve(val)
           },rej=>{
             reject(rej)

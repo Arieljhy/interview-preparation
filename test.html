@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+<title>hi</title>
+<style>
+
+body{
+    width: 100%;
+    height: 100vh;
+}
+/* 底边框 */
+.b-border:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: red;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+/* 上边框 */
+.t-border:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: red;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+/* 右边框 */
+.r-border:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+  background: red;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+/* 左边框 */
+.l-border:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+  background:red;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+/* 四条边 */
+.setBorderAll {
+  position: relative;
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: left top;
+    box-sizing: border-box;
+    border: 1px solid red;
+    border-radius: 4px;
+  }
+}
+.border{
+  width: 200px;
+  height: 200px;
+  background-color: #e5e5e5;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+
+</style>
+</head>
+<body>
+    <div class="b-border border"></div>
+    <div class="l-border border"></div>
+    <div class="t-border border"></div>
+    <div class="r-border border"></div>
+    <div class="setBorderAll border" ></div>
+    <script>
+      window.sessionStorage.setItem('name',{name:"Ariel",age:12})
+      window.localStorage.setItem("hhhh",{name:'ghajcbjh'})
+      
+
+    </script>
+
+
+</body>
