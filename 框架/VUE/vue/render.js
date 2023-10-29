@@ -3,8 +3,9 @@
  */
 //组件的渲染
 /**
- * 1、先将模板编译成 render函数
- * 2、创建组件的虚拟节点
+ * 1、先将模板编译成
+ *   render函数
+ * 2、创建组件的虚拟节点Vnode
  * new CTOr 挂载
  * isSameVnode
  * 创建真实节点 patch createElement

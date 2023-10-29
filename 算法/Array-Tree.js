@@ -66,6 +66,11 @@ const arrayToTree = (arr,id) => {
     },[])
 
 }
+const arrayTotree = (arr, id)=>{
+    return arr.reduce((res,cur)=>{
+        
+    },[])
+}
 
 // console.log("arrayToTree",tree);
 // const treeToArray = (treeArr)=>{

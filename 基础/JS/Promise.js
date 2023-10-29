@@ -68,7 +68,7 @@ class myPromise{
           setTimeout(()=>{
             try {
               const result = onRejected(this.reason)
-              resolve(result)
+              reject(result)
             } catch (e){
               reject(e)
             }

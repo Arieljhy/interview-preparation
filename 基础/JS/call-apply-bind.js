@@ -4,7 +4,7 @@
  */
 Function.prototype.myBind = function(context ,...args){
     context = context || window;
-    let fn = symbol('fn');
+    let fn = symbol('');
     context[fn] = this;
     return function(...innerArgs){
         return  context[fn].apply(context,args.concat(innerArgs))
