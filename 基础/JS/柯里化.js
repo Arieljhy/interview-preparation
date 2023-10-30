@@ -22,10 +22,8 @@ function add() {
     return fn;
 }
 
-function add(a, b, c) {
-  return a + b + c
-}
-function curry(fn){
-let fn 
-
-}
+// function add(a, b, c) {
+//   return a + b + c
+// }
+let curried = curry(add)
+console.log(curried(2)(3,4))

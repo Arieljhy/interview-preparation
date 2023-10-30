@@ -1,5 +1,5 @@
 /**
- * 批量请求函数
+ * 批量请求函数 multiRequest
  */
 const multiRequest  = (reqArr , limitNum)=>{
     let len = reqArr.length;

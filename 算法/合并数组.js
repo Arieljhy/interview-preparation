@@ -21,5 +21,5 @@ const merge = (arr1, arr2)=>{
     }
     return res
 }
-let newArr = merge(arr1,arr2)
-console.log(newArr)
+let newArr = merge(arr1,arr2);
+console.log(newArr);
