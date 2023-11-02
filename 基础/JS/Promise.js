@@ -118,9 +118,9 @@ class myPromise{
             if(count === promiseArr.length){
               resolve(res)
             }
-          },(reas)=>{
+          },(reason)=>{
             count++;
-            res[i] = {status:'rejected',reason:reas}
+            res[i] = {status:'rejected',reason}
             if(count === promiseArr.length){
               resolve(res)
             }

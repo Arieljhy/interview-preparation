@@ -17,7 +17,16 @@ let str = 'hgvdebcjn';
 let obj = {id:1,name:'ariel'};
 let arr = [2,4,18,0,'jsdhgc',NaN,'',true,false]
 let set = new Set().add('hjbdjc').add('hsjb')
-let map = new Map().set(0,'hjbdjc').set(1,'hsjb')
+let map = new Map().set(0,'hjbdjc').set(1,'hsjb').set('222',"value2")
 // for(let key in set){
 //     console.log(key)
 // }
+
+// for(let [key,value] of map){
+//     console.log(key,value)
+// }
+console.log(map.entries())
+for(let key of map.keys()){
+    console.log(key)
+}
+

@@ -46,6 +46,8 @@ Object.myCreate = function (proto,proObj) {
     }
   }
 
-  Object.myCreate
+  Object.myCreate = function (proto,proObj){
+    
+  }
   
   

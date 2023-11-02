@@ -1,5 +1,5 @@
 function myInstanceof(instance , constructor){
-    if(instance === null || typeof instance !== 'object' && typeof instance !== 'function') return false;
+    if(instance === null || (typeof instance !== 'object' && typeof instance !== 'function')) return false;
     let proto = instance.__proto__;
     //let proto = Object.getPrototypeOf(instance)
     while(proto){

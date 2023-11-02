@@ -15,5 +15,4 @@ const compareVersion = (version1,version2)=>{
 
     }
     return 0;// v1 v2 相等
-
 }
