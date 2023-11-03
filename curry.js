@@ -12,9 +12,6 @@ function curry(fn,...args){
 let curried = curry(add)
 let res =  curried(3)(4)(5)
 
-
-
-
 function curry(fn) {
     return function curried(...args) {
       if (args.length >= fn.length) {

@@ -1,8 +1,8 @@
 Object.defineProperty(data,key,{
-    getters(){
+    get(){
 
     },
-    setter(newValue){
+    set(newValue){
 
     }
 })
