@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .sector {
+            width: 100px;
+            height: 100px ;
+            background-color: #EEEEEE;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .s1{
+            background-color: #4C84FF;
+            transform: rotate(28deg) translateX(200px); 
+        }
+        .s2 {
+            transform:translateX(200px) rotate(28deg);
+            background-color: #4C84FF;        
+        }
+        .container{
+            width: 100%;
+            height: 500px;
+            background-color: #4C84FF;
+            display: flex;
+        }
+        .container .p1{
+            width: 100px;
+          
+            
+
+        }
+        .container .p2{
+            width: 300px;
+            flex:1;
+            background-color: yellow;
+
+        }
+    
+    </style>
+</head>
+<body>
+    <!-- <div class="sector"></div> -->
+    <div class="sector s1"></div>
+    <div class="sector s2"></div>
+    <div class="container">
+        <div class="p1"></div>
+        <div class="p2"></div>
+    </div>
+</body>
