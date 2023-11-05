@@ -19,4 +19,11 @@ function deepCopy (obj){
     }
     return res;
 }
-
+function deepCopy1(obj){
+    if(obj === null || typeof obj !== 'object' && typeof obj !== 'function') return obj;
+    let res = Array.isArray(obj) ? [] :{};
+    for(let key in obj){
+        
+        res[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+    }
+}
