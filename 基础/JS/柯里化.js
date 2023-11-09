@@ -3,27 +3,29 @@
  *  主要作用 和 特点 是 参数复用、提前返回 和 延迟执行。
  */
 function curry(fn , ...args){
-    let length  = args.length;
-    return ()=>{
-        newArgs = args.concat(args);
-        fn(newArgs)
+    if(args.length >= fn.length){
+      return fn(...args)
+    }
+    return function(...nextArgs){
+        return curry(fn,...nextArgs,...args)
     }
 }
-//
-function add() {
-    const _args = [...arguments];
-    function fn() {
-      _args.push(...arguments);
-      return fn;
-    }
-    fn.toString = function() {
-      return _args.reduce((sum, cur) => sum + cur);
-    }
-    return fn;
+function add(a, b, c) {
+  return a + b + c
 }
-
-// function add(a, b, c) {
-//   return a + b + c
-// }
 let curried = curry(add)
 console.log(curried(2)(3,4))
+
+//
+// function add() {
+//     const _args = [...arguments];
+//     function fn() {
+//       _args.push(...arguments);
+//       return fn;
+//     }
+//     fn.toString = function() {
+//       return _args.reduce((sum, cur) => sum + cur);
+//     }
+//     return fn;
+// }
+

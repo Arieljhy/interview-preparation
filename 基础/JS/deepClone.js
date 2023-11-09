@@ -7,7 +7,7 @@ function deepClone(target){
     let res = Array.isArray(target) ? [] :{};
     for(let key in target){
        if(target.hasOwnProperty(key)){
-        res[key] =   deepClone(target[key])
+        res[key] = deepClone(target[key])
        }
     }
     return res;
@@ -20,12 +20,15 @@ let obj={
     new:{
         hai:'hai',
         hello:'hello',
-        arr:[1,2,3,4]
+        arr:[1,2,3,4],
+        obj:obj
     }
 
 }
+let obj1 =JSON.parse(JSON.stringify(obj)) 
+console.log(obj1)
 
-let objj = deepClone(obj)
-objj.name = 'Aril'
-console.log(obj)
-console.log(objj)
+// let objj = deepClone(obj)
+// objj.name = 'Aril'
+// console.log(obj)
+// console.log(objj)

@@ -48,7 +48,7 @@ class RedBag{
                 let money = this.getAmount(this.totalAmount,residue);
                 console.log("抢到：",money,"，还剩：", this.totalAmount )
             }
-            if(residue == 1){
+            if(residue === 1){
                 console.log("抢到：",this.totalAmount,"， 还剩：", 0)
             }
         }

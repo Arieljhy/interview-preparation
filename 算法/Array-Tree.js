@@ -13,19 +13,23 @@ let list  = [
     { id: 9, pid: 7, name: '黄瓜味' }
 ];
 
-const arrayToTree = (arr,id) => {
-    return arr.reduce((prev,cur)=>{
+// const arrayToTree = (arr,id) => {
+//     return arr.reduce((prev,cur)=>{
+//         if(cur['pid'] === id){
+//             cur.children = arrayToTree(arr,cur.id);
+//             prev = prev.concat(cur)
+//         }
+//         return prev
+//     },[])
+
+// }
+const arrayToTree = (arr, id)=>{
+    return arr.reduce((res,cur)=>{
         if(cur['pid'] === id){
             cur.children = arrayToTree(arr,cur.id);
-            prev = prev.concat(cur)
+            res = res.concat(cur);
         }
-        return prev
-    },[])
-
-}
-const arrayTotree = (arr, id)=>{
-    return arr.reduce((res,cur)=>{
-        
+        return res;
     },[])
 }
 

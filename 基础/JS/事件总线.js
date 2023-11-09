@@ -9,9 +9,9 @@ class EventBus{
     }
     on(name,fn){
         if(this.cache[name]){
-            this.cache.push(fn)
+            this.cache[name].push(fn)
         }else{
-            this.cache = [fn];
+            this.cache[name] = [fn];
         }
     }
     off(name,fn){

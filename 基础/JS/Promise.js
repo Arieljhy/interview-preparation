@@ -97,7 +97,7 @@ class myPromise{
           for(let i = 0 ; i < promiseArr.length ; i++){
             myPromise.resolve(promiseArr[i]).then((val)=>{
               count++;
-              res.push(val);
+              res[i] = val;
               if(count === promiseArr.length) return resolve(res);
             },(err)=>{
               reject(err);

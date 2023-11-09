@@ -1,20 +1,35 @@
 //防抖
 function debounce(fn,delay) {
     let timer;
-    return () => {
+    return function(...args)  {
         if(timer) clearTimeout(timer);
-        timer = setTimeout(()=>fn(),delay)
-    }
-
-}
-//节流
-function throttle(fn ,delay){
-    let timer;
-    return () => {
-        if(timer) return;
         timer = setTimeout(()=>{
-            fn();
-            clearTimeout(timer);
+            fn.apply(this,args)
         },delay)
     }
 }
+//节流
+//节流就是连续触发的事件每隔规定时间只执行一次。
+function throttle(fn ,delay){
+    let time = 0;
+    return function(...args) {
+        let now = new Date().getTime();
+        if(now - time > delay) {
+            time = now;
+            fn.apply(this,args);   
+        }
+    }
+}
+function fn(n){
+    console.log("res:",n)
+}
+let throttleFn = throttle(fn,2000);
+throttleFn(0)
+setTimeout(()=>{
+    throttleFn(1)
+},1000)
+setTimeout(()=>{
+    throttleFn(2)
+},3000)
+
+

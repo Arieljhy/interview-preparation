@@ -18,10 +18,11 @@ const partition = (arr,left,right) => {
     let i = left -1;
     for(let j = left ; j < right ; j++){
         if(arr[j] < pivot){
+            i++;        // 别忘了 这个
             [arr[i],arr[j]] = [arr[j],arr[i]];
         }
     }
     [arr[i+1],arr[right]] = [arr[right],arr[i+1]];
     return i+1
 }
-
+console.log(quickSort(arr,0,arr.length-1))
