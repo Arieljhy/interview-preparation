@@ -12,7 +12,14 @@ const flattenByLimit = (arr,limit = 1)=>{
     }
     return res
 }
-console.log(flattenByLimit(arr,2))
+// console.log(flattenByLimit(arr,2))
+
+const flatten = (arr)=>{
+    return arr.reduce((pre,cur)=>{
+       return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
+    },[])
+}
+console.log(flatten(arr))
 
 const bigNumberAdd = (num1,num2)=>{
     let i = num1.length - 1 , j = num2.length - 1 , carry = 0;

@@ -1,6 +1,6 @@
 const getRes = function(promise,limit){
     let count = 1;
-    return new Promise((resolve,reject)=>{
+    return new watchEffect()((resolve,reject)=>{
         const retry = ()=>{
             Promise.resolve(promise).then((res)=>{
                 resolve(res)
@@ -17,3 +17,9 @@ const getRes = function(promise,limit){
        
     })
 }
+
+ function getReq(limit){
+    return function(maxNum){
+
+    }
+ }

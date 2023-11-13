@@ -44,6 +44,16 @@ const deepTree0 = (node)=>{
     dfs(node, nodeList);
     return nodeList;
 }
+const deepTree1 = (node)=>{
+  const nodeList = [];
+  const dfs = (node,nodeList)=>{
+    nodeList.push(node.name);
+    nodeList.children.forEach(e=>dfs(e,nodeList));
+  }
+  dfs(node,nodeList);
+  return nodeList;
+
+}
 
 const deepTree = (node)=>{
     let nodeList = []
@@ -53,6 +63,12 @@ const deepTree = (node)=>{
     }
     dfs(node,nodeList);
     return nodeList;
+}
+
+const getRes = (promises , limit)=>{
+    let count = 0;
+    let 
+
 }
 
  

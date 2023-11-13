@@ -59,11 +59,183 @@ function add(x,y,z){
 	context = context || window;
 	let fn = Symbol('');
 	context[fn] = this;
-	return function(...nextArgs){
-		if(context.)
+	return function fn (...nextArgs){
+		if(this instanceof fn) return new context[fn](...nextArgs,...args)
 		return context[fn].apply(context,nextArgs.concat(args))
 	}
   }
-  if(this instanceof fn){
-	return new _this(...args, ...innerArgs);
+Function.prototype.myCall = function(context,...args){
+	context = context || window;
+	let fn = Symbol('');
+	context[fn] = this;
+	let res = context[fn](...args);
+	delete context[fn];
+	return res;
+}
+Function.prototype.myApply = function(args){
+	context = context || window;
+	let fn = Symbol('');
+	context[fn] = this;
+	let res = context[fn](...args);
+	delete context[fn];
+	return res;
+
+}
+
+class MyPromise{
+	constructor(exc){
+		this.status = "pending";
+		this.value = "";
+		this.reason = "";
+		this.onResolvedCallbacks = [];
+		this.onRejectedCallbacks = [];
+		resolve = (value) => {
+			if(this.status === 'pending'){
+				this.status = 'fulfilled';
+				this.value = value;
+			}
+		}
+		reject = (reason) => {
+			if(this.status === 'pending'){
+				this.status = 'rejected';
+				this.reason = reason;
+			}
+		}
+		try{
+			exc(this.resolve,this.reject)
+		}catch(err){
+			this.reject(err)
+		}
+	}
+	then(onFulfilled,onRejected){
+		return new MyPromise((resolve,reject)=>{
+			onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value=>value;
+			onRejected = typeof onRejected === 'function' ? onRejected : reason=>{ throw  new Error( reason instanceof Error ? reason.message :reason)};
+			if(this.status === 'pending'){
+				this.onResolvedCallbacks.push(()=>{
+					try{
+						setTimeout(()=>{
+							let res = onFulfilled(this.value);
+							res instanceof MyPromise ? res.then(resolve,reject) : resolve(res)
+						},0)
+					}catch(err){
+						reject(err);
+					}
+				
+				})
+				this.onRejectedCallbacks.push(()=>{
+					try{
+						setTimeout(()=>{
+							let res = onRejected(this.value);
+							res instanceof MyPromise ? res.then(resolve,reject) : resolve(res)
+						},0)
+					}catch(err){
+						reject(err);
+					}
+				
+				})
+			}
+			if(this.status === "fulfilled"){
+				try{
+					setTimeout(()=>{
+						let res = onFulfilled(this.value);
+						resolve(res)
+					},0)
+				}catch(err){
+					reject(err);
+				}
+			}
+			if(this.status === "rejected"){
+				try{
+					setTimeout(()=>{
+						let res = onRejected(this.value);
+						resolve(res)
+					},0)
+				}catch(err){
+					reject(err);
+				}
+			}
+		})
+	}
+	catch(err){
+		return this.then(undefined,err)
+	}
+	resolve(value){
+		return new MyPromise((resolve,reject)=>{
+			resolve(value);
+		})
+	}
+	reject(reason){
+		return new MyPromise((resolve,reject)=>{
+			reject(reason);
+		})
+	}
+	all(promises){
+		return new MyPromise((resolve,reject)=>{
+			if(promises.length === 0) return resolve([]);
+			let res = [];
+			let count = 0;
+			for(let i = 0 ;i < promises.length; i++)
+			MyPromise.resolve(promises[i]).then((value)=>{
+				res[i] = value;
+				count++;
+				if(count === promises.length){
+					resolve(res)
+				}
+			},(err)=>{
+				reject(err)
+			})
+
+
+
+		})
+	}
+	race(promises){
+		return new MyPromise((resolve,reject)=>{
+			if(promises.length === 0) return resolve([]);
+			for(let i = 0 ;i < promises.length; i++)
+			MyPromise.resolve(promises[i]).then((value)=>{
+				resolve(value)
+			},(err)=>{
+				reject(err)
+			})
+		})
+	}
+	allSettle(promises){
+		return new MyPromise((resolve,reject)=>{
+			if(promises.length === 0) return resolve([]);
+			let res = [];
+			let count = 0;
+			for(let i = 0 ;i < promises.length; i++)
+			MyPromise.resolve(promises[i]).then((value)=>{
+				res[i] = {status:'fulfilled',value};
+				count++;
+				if(count === promises.length){
+					resolve(res)
+				}
+			},(err)=>{
+				res[i] = {status:'rejected',reason:err};
+				count++;
+				if(count === promises.length){
+					resolve(res)
+				}
+			})
+		})
+	}
+	retry(promise){
+		return new MyPromise((resolve,reject)=>{
+		
+			const fn = ()=>{
+				MyPromise.resolve(promise).then((value)=>{
+			
+				},(err)=>{
+					
+				})
+			}
+	
+		
+
+		})
+	}
+	
 }

@@ -79,6 +79,14 @@ class myPromise{
     catch(onRejected){
       return this.then(undefined,onRejected);
     }
+    //finally方法
+    finally(callback) {
+      return this.then(
+        value => MyPromise.resolve(callback()).then(() => value),             //执行回调,并return value传递给后面的then
+        reason => MyPromise.resolve(callback()).then(() => { throw reason })  //reject同理
+      )
+    }
+  
     static resolve(value){
       return myPromise((resolve,reject)=>{
         resolve(value)
