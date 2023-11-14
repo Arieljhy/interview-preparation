@@ -3,56 +3,43 @@ function fetch(url){
         setTimeout(()=>{
             let s = url.split('.')[0];
             if(Number(s[s.length-1])%2){
-                resolve(url)
+                console.log("success",{success:url})
+                resolve({success:url})
             }else{
-                reject(url)
+                console.log("error",{error:url})
+                resolve({error:url})
             }
             
         },2000)
     })
 }
-let p1 = fetch('https://url1.com');
+ async function getRes(urls){
+    for(let i = 0 ; i < urls.length ; i++){
+        let res = await new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    let s = urls[i].split('.')[0];
+                    if(Number(s[s.length-1])%2){
+                    
+                        resolve({success:urls[i]})
+                    }else{
 
-let p2 = fetch('https://url2.com');
-
-let p3 = fetch('https://url3.com');
-
-let p4 = fetch('https://url4.com');
-
-
-
-
-
-
-
-
-
-
-
-// req("url1").then((value)=>{
-//     console.log("1-",value)
-// });
-// req("url2").then((value)=>{
-//     console.log("2-",value)
-// });
-// req("url3").then((value)=>{
-//     console.log("3-",value)
-// });
-// req("url4").then((value)=>{
-//     console.log("4-",value)
-// });
-// req("url5").then((value)=>{
-//     console.log("5-",value)
-// });
-async function getData() {
-    const promiselist = [];
-    for (let i = 0; i < 100; i++) {
-      const promise = fetch(`https://example.com/data${i}.json`);
-      promiselist.push(promise);
+                        resolve({error:urls[i]})
+                    }
+                    
+                },2000)
+                
+                });
+        console.log("res",res);
     }
-    const responses = await Promise.all(promiselist);
-    for (const response of responses) {
-      // handle each response here 
-    }
-  }
-  
+    console.log("end");
+} 
+let p1 = 'https://url1.com';
+
+let p2 = 'https://url2.com';
+
+let p3 = 'https://url3.com';
+
+let p4 = 'https://url4.com';
+
+let urls = [p1,p2,p3,p4];
+getRes(urls);
