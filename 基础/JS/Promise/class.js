@@ -21,11 +21,16 @@ class Req {
         return new Promise((resolve, reject) => {
             let attempts = 0;
             const fetchRetry = () => {
-                fetch(url).then(resolve).catch(err => {
+                fetch(url).then((val)=>{
+                    console.log({value:val})
+                    resolve({value:val});
+                }).catch(err => {
                     attempts++;
                     if (attempts >= options.maxNum) {
-                        reject(err);
+                        console.log({error:err})
+                        resolve({error:err});
                     } else {
+                        console.log("retry----",url,attempts)
                         fetchRetry();
                     }
                 }).finally(() => {
