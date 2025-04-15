@@ -13,6 +13,7 @@ const binaryBoolean = (arr , target)=>{
     }
    return false
 }
+
 //二分
 
 const binary = (arr,target)=>{
