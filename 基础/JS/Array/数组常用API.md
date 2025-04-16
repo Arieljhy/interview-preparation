@@ -2,8 +2,8 @@
  
     - push() pop() shift() unshift()
     
-    - slice(start,end)  //不改变原数组
-    - splice(start,count) //改变原数组
+    - slice(start, end)  // 不改变原数组，截取不包括end，返回截取部分的数组
+    - splice(start, count) // 改变原数组，count 是 0 为添加元素，其他为删除元素返回删掉元素数组
     
     - join()
     - reverse()
@@ -14,7 +14,7 @@
  ### 数组 遍历
     - forEach()
     - reduce()
-    - map() //改变原数组
+    - map() // 不改变原数组，返回一个新数组
   
  ### 数组 查找
     - indexOf()
@@ -38,5 +38,5 @@
     - Array.prototype.slice.call()
   
  ### 判断 是否为 数组
-    - Array.isArray()    //true 是 ，false 不是
+    - Array.isArray()    // true 是 ，false 不是
  

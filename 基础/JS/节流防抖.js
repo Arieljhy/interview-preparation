@@ -1,28 +1,30 @@
-//防抖
-function debounce(fn,delay) {
-    let timer;
-    return function(...args)  {
+// 防抖
+const debounce = (fn, delay) => {
+    let timer = null;
+    return function(...args) {
         if(timer) clearTimeout(timer);
         timer = setTimeout(()=>{
             fn.apply(this,args)
         },delay)
     }
 }
-//节流
-//节流就是连续触发的事件每隔规定时间只执行一次。
-function throttle(fn ,delay){
+// 节流
+// 节流就是连续触发的事件每隔规定时间只执行一次。
+const throttle = (fn, delay) => {
     let time = 0;
     return function(...args) {
         let now = new Date().getTime();
-        if(now - time > delay) {
+        if (now - time > delay) {
             time = now;
             fn.apply(this,args);   
         }
     }
 }
-function fn(n){
+
+function fn(n) {
     console.log("res:",n)
 }
+
 let throttleFn = throttle(fn,2000);
 throttleFn(0)
 setTimeout(()=>{

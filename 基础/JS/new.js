@@ -8,6 +8,6 @@
 function myNew(constructor,...args){
     let newObj = {};
     newObj.__proto__ = constructor.prototype;
-    let res = constructor.apply(newObj,args);
+    let res = constructor.apply(newObj, args);
     return res instanceof Object ? res : newObj;
 }
