@@ -24,7 +24,7 @@ console.log(flatten(arr))
 const bigNumberAdd = (num1,num2)=>{
     let i = num1.length - 1 , j = num2.length - 1 , carry = 0;
     let res = '';
-    while( i >= 0 || j >= 0 ){
+    while (i >= 0 || j >= 0) {
         let n1 = i >= 0 ? parseInt(num1[i]) : 0;
         let n2 = j >= 0 ? parseInt(num2[j]) : 0;
         let sum = n1 + n2 + carry ;

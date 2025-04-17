@@ -20,6 +20,7 @@
     - indexOf()
     - lastIndexOf()
     - findIndex()
+    - find()   // 
     - includes()
     
     - filter()

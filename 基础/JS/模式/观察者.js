@@ -1,25 +1,25 @@
-class Dep{ //监听者
-    constructor(){
+class Dep { //监听者
+    constructor() {
         this.subs = [];
     }
-    add(watcher){
+    add(watcher) {
         this.subs.push(watcher); 
     }
-    remove(watcher){
+    remove(watcher) {
         let index = this.subs.findIndex(w=>w===watcher);
         index !==-1 && this.subs.splice(index,1);
 
     }
-    notify(){
+    notify() {
         this.subs.forEach((w)=>w.update())
 
     }
 }
-class Watcher{ //观察者 
-    constructor(name){
+class Watcher { //观察者 
+    constructor(name) {
         this.name = name;
     }
-    update(){
+    update() {
         //收到消息 触发更新
     }
 }

@@ -1,4 +1,4 @@
-const strTo = ( str )=>{
+const strTo = (str) => {
     let strArr = str.split('-');
     let res = '';
     for(let i = 0 ; i < strArr.length ; i++){
