@@ -1,5 +1,5 @@
-const addBigNum = (num1,num2)=>{
-    let len1 = num1.length,len2 = num2.length;
+const addBigNum = (num1, num2) => {
+    let len1 = num1.length, len2 = num2.length;
     let carry = 0;
     let res = '';
     while(i < Math.max(len1,len2)){
@@ -10,5 +10,4 @@ const addBigNum = (num1,num2)=>{
         res = ( sum % 10 )+ res
     }
     return carry === 1 ? `1${res}`:res;
-
 }

@@ -1,14 +1,16 @@
-const reverseList = (head)=>{
-    if(head === null) return head;
-    let newNode = new ListNode();
-    newNode.next = head;
-    let pre = newNode;
-    let cur = pre.next;
-    while(cur.next){
-        let temp = cur.next;
-        cur.next = temp.next;
-        temp.next = pre.next;
-        pre.next = temp;
+
+function ListNode(val, next) {
+    this.val = val ?? 0;
+    this.next = next ?? null;
+}
+
+const reverseList = (head) => {
+    const newNode = new ListNode();
+    while (head) {
+        const temp = newNode.next;
+        newNode.next = new ListNode(head.val);
+        newNode.next.next = temp;
+        head && (head = head.next)
     }
     return newNode.next;
 }
