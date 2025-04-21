@@ -1,19 +1,20 @@
-const compareVersion = (v1,v2)=>{
-    let len1  = v1.length,len2 = v2.length;
-    let maxLen = Math.max(len1,len2);
-    let v1Arr = v1.split('.');
-    let v2Arr = v2.split('.');
-    for(let i = 0 ; i < maxLen ; i++){
-        let s1 = v1Arr[i] || 0;
-        let s2 = v2Arr[i] || 0;
-        if(s1 === s2){
-            continue
-        }else if(s1 > s2){
-            return 1
-        }else{
-            return -1
+const compareVersion = (version1, version2) => {
+    const v1 = version1.split('.');
+    const v2 = version2.split('.');
+    let i = 0;
+    while (v1[i] || v2[i]) {
+        const n1 = Number(v1[i] ?? 0);
+        const n2 = Number(v2[i] ?? 0);
+
+        if (n1 === n2) {
+            i++;
+        }
+        else if (n1 < n2) {
+            return -1;
+        }
+        else {
+            return 1;
         }
     }
-    return 0
-
+    return 0;
 }

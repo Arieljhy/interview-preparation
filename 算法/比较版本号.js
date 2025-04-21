@@ -5,10 +5,13 @@ const compareVersion = (version1, version2) => {
     while (v1[i] || v2[i]) {
         const n1 = Number(v1 ?? 0);
         const n2 = Number(v2 ?? 0);
-        if (n1 < n2) {
+        if (n1 === n2) {
+            i++;
+        }
+        else if (n1 < n2) {
             return -1;
         }
-        if (n1 > n2) {
+        else {
             return 1;
         }
     }

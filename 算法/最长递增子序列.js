@@ -10,7 +10,7 @@ const longOfStr = ( nums )=>{
             } 
         }
         dp[i] = count;
-        res = Math.max(dp[i],res);
+        res = Math.max(dp[i], res);
      }
      return res;
 }
