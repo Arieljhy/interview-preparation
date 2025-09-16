@@ -1,14 +1,14 @@
-function fetch(url){
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
+function fetch(url) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
             let s = url.split('.')[0];
-            if(Number(s[s.length-1])%2){
-                resolve(url)
-            }else{
-                reject(url)
+            if (Number(s[s.length-1]) % 2) {
+                resolve(url);
+            } else {
+                reject(url);
             }
             
-        },2000)
+        }, 2000)
     })
 }
 

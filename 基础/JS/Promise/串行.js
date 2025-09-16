@@ -13,7 +13,8 @@ function fetch(url){
         },2000)
     })
 }
- async function getRes(urls){
+
+ async function getRes(urls) {
     for(let i = 0 ; i < urls.length ; i++){
         let res = await new Promise((resolve,reject)=>{
                 setTimeout(()=>{

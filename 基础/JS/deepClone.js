@@ -1,17 +1,19 @@
 function deepClone(target){
-    if(target === null ||  typeof target !== 'object'){
-        return target
-    } 
-    if(target instanceof RegExp) return new RegExp(target)
-    if(target instanceof Date) return new Date(target)
+    if(target === null ||  typeof target !== 'object') return target;
+    if(target instanceof RegExp) return new RegExp(target);
+    if(target instanceof Date) return new Date(target);
+
     let res = Array.isArray(target) ? [] :{};
     for(let key in target){
        if(target.hasOwnProperty(key)){
         res[key] = deepClone(target[key])
        }
     }
+
     return res;
 }
+
+/** 测试数据 */
 let obj={
     name:"name",
     id:1,
