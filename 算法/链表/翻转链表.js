@@ -10,7 +10,7 @@ const reverseList = (head) => {
         const temp = newNode.next;
         newNode.next = new ListNode(head.val);
         newNode.next.next = temp;
-        head && (head = head.next)
+        head = head.next
     }
     return newNode.next;
 }
