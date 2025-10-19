@@ -10,7 +10,7 @@ function fetch(url){
                 resolve({error:url})
             }
             
-        },2000)
+        }, 2000)
     })
 }
 

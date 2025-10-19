@@ -7,21 +7,64 @@
  *      对象常见的浅拷贝:
  *          扩展运算符
  *          Object.assign()
+ * 注意：循环引用
  */
 //深拷贝
 //JSON.parse(JSON.stringify()) //深层次引用 和 
 
-function deepCopy(target){
-    if(target === null || (typeof target !== 'object' && typeof target !== 'function')) return target;
-    if(target instanceof RegExp) return new RegExp(target);
-    if(target instanceof Date) return new Date(target);
-    let newRes = Array.isArray(target) ? [] :{};
-    for(let key in target){
-        if(target.hasOwnProperty(key)){
-            newRes[key] = deepCopy(target[key]); 
+const getType = (target) => {
+    return Object.prototype.toString.call(target).slice(8, -1)
+}
+
+const deepCopy = (target, map = new WeakMap()) => {
+    // if(target === null || (typeof target !== 'object' && typeof target !== 'function')) return target;
+    // if(target instanceof RegExp) return new RegExp(target);
+    // if(target instanceof Date) return new Date(target);
+    const type = getType(target);
+    let cloneTarget;
+    switch (type) {
+        case 'Object':
+            cloneTarget = {};
+            break;
+        case 'Array':
+            cloneTarget = [];
+            break;
+        case 'Map':
+            cloneTarget = new Map();
+            break;
+        case 'Set':
+            cloneTarget = new Set();
+            break;
+        case 'RegExp':
+            return new RegExp(target);
+        case 'Date':
+            return new Date(target);
+        default:
+            return target;
+    }
+    map.set(target, cloneTarget);
+
+    if (type === 'Map') {
+        target.forEach((value, key) => {
+            cloneTarget.set(deepCopy(key, map), deepCopy(value, map));
+        })
+        return cloneTarget;
+    }
+
+    if (type === 'Set') {
+        target.forEach((value) => {
+            cloneTarget.add(deepCopy(value, map));
+        })
+        return cloneTarget;
+    }
+
+    for (const key in target) {
+        if (target.hasOwnProperty(key)) {
+            cloneTarget[key] = deepCopy(target[key], map)
         }
     }
-    return newRes;
+     
+    return cloneTarget;
 
 }
 

@@ -6,8 +6,14 @@
  * 4、类型是object的，返回这个新对象，否则返回空对象。
  */
 function myNew(constructor, ...args){
-    let newObj = {};
-    newObj.__proto__ = constructor.prototype;
-    let res = constructor.apply(newObj, args);
-    return res instanceof Object ? res : {};
+    // const newObj = {};
+    // newObj.__proto__ = constructor.prototype;
+
+    // 创建空对象 并 链接原型链
+    const newObj = Object.create(constructor.prototype)
+    const result = constructor.apply(newObj, args);
+    return result instanceof Object ? result : newObj;
 }
+
+let o = myNew(Boolean);
+console.log(o)
