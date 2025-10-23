@@ -1,4 +1,4 @@
-const  multiRequest = (urls: string[] = [], maxNum: number) => {
+const multiRequest1 = (urls: string[] = [], maxNum: number) => {
     const len = urls.length;
     const res = new Array(len).fill(false);
     let count = 0; // 当前请求的数量

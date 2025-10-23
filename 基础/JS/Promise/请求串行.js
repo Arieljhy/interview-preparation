@@ -6,3 +6,28 @@
  * async 和 循环 + await 结合，实现循环之间等待效果。
  * promise.then 和 递归 结合，实现循环之间等待效果。
 */
+function fetch (url) {
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve({success: url})
+        }, 2000)
+    })
+}
+
+ async function getRes(urls) {
+    for (let i = 0; i < urls.length; i++) {
+        let res = await fetch(urls[i]);
+        console.log("res",res);
+    }
+    console.log("end");
+} 
+let p1 = 'https://url1.com';
+
+let p2 = 'https://url2.com';
+
+let p3 = 'https://url3.com';
+
+let p4 = 'https://url4.com';
+
+let urls = [p1,p2,p3,p4];
+getRes(urls);

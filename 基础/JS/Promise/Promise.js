@@ -3,12 +3,13 @@
  * 来解决 回调地狱 问题，.then 链式调用 , .catch 
  */
 class myPromise{
-    constructor(executor){
+    constructor(executor) {
         this.status = 'pending';
         this.value = '';
         this.reason = '';
         this.onResolvedCallbacks = [];
         this.onRejectedCallbacks = [];
+
         resolve = (value) => {
             if(this.status === 'pending'){
                 this.status = 'fulfilled';
@@ -21,56 +22,62 @@ class myPromise{
                 this.reason = reason;
             }
         }
-        try{
-            executor(this.resolve , this.reject)
-        }catch(error){
-            reject(error)
+        try {
+            executor(this.resolve , this.reject);
+        } 
+        catch (error) {
+            reject(error);
         }
     }
 
-    then(onFulfilled,onRejected){
+    then(onFulfilled, onRejected) {
+
       onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value=>value;
       onRejected = typeof onRejected === 'function' ? onRejected : reason=>{ throw new Error(reason instanceof Error ? reason.message : reason)};
-      return new myPromise((resolve,reject)=>{
-        if(this.status === 'pending'){
-          this.onResolvedCallbacks.push(()=>{
-            setTimeout(()=>{
-              try{
-                const result = onFulfilled(this.value)
-                result instanceof MyPromise ? result.then(resolve,reject):resolve(result)
-              } catch (e){
-                reject(e)
-              }
-            },0)
-          })
-          this.onRejectedCallbacks.push(()=>{
-            setTimeout(()=>{
+
+      return new myPromise((resolve, reject) => {
+        if (this.status === 'pending') {
+          this.onResolvedCallbacks.push(() => {
+
+            setTimeout(() => {
               try {
-                const result = onRejected(this.reason)
-                result instanceof MyPromise ? result.then(resolve,reject): resolve(result)
-              } catch (e){
-                reject(e)
+                const result = onFulfilled(this.value);
+                result instanceof MyPromise ? result.then(resolve,reject) : resolve(result);
+              } catch (e) {
+                reject(e);
               }
-            },0)
+            }, 0);
+          })
+
+          this.onRejectedCallbacks.push(() => {
+            setTimeout(() => {
+              try {
+                const result = onRejected(this.reason);
+                result instanceof MyPromise ? result.then(resolve,reject) : resolve(result);
+              } catch (e) {
+                reject(e);
+              }
+            }, 0);
           })
         }
-        if(this.status === 'fulfilled' ){
-          setTimeout(()=>{
+
+        if (this.status === 'fulfilled') {
+          setTimeout(() => {
             try{
-              const result = onFulfilled(this.value)
-              resolve(result)
-            } catch (e){
-              reject(e)
+              const result = onFulfilled(this.value);
+              result instanceof MyPromise ? result.then(resolve,reject) : reject(result);
+            } catch (e) {
+              reject(e);
             }
           },0)
         } 
-        if(this.status === 'rejected'){
-          setTimeout(()=>{
+        if (this.status === 'rejected') {
+          setTimeout(() => {
             try {
-              const result = onRejected(this.reason)
-              reject(result)
-            } catch (e){
-              reject(e)
+              const result = onRejected(this.reason);
+              result instanceof MyPromise ? result.then(resolve,reject) : resolve(result);
+            } catch (e) {
+              reject(e);
             }
           },0)
         }

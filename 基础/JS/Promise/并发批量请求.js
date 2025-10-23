@@ -4,7 +4,7 @@
  * 控制同时进行的请求数量（并发数）
  * 当一个请求完成时，自动从队列中取出下一个请求
  */
-const multiRequest  = (tasks, maxNum = 6) => {
+const multiRequest = (tasks, maxNum = 6) => {
     return new Promise(resolve => {
         if (!tasks.length) {
             resolve();

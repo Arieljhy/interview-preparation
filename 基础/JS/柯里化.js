@@ -7,7 +7,7 @@
  */
 
 // 收集参数，直到参数够了再执行
-function curry(fn){
+function curry(fn) {
   return function curried (...args) {
     // 原函数参数个数
     if(args.length >= fn.length){
