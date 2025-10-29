@@ -84,10 +84,36 @@ class MyPromise {
         })
         return promise2;
     }
+
+    catch(onRejected) {
+        return this.then(null, onRejected);
+    }
+
+    finally(callback) {
+        return this.then(
+            value => MyPromise.resolve(callback()).then(() => value),
+            reason => MyPromise.resolve(callback()).then(() => {throw reason})
+        );
+    }
+
+    static resolve(value) {
+        if (value instanceof MyPromise) return value;
+        if (value && typeof value.then === 'function') {
+            return new MyPromise((resolve, reject) => {
+                value.then(resolve, reject);
+            });
+        }
+
+        return new MyPromise(resolve => resolve(value));
+    }
+
+    static reject(reason) {
+        return new MyPromise(_, reject => reject(reason));
+    }
 }
 
 function resolvePromise(promise2, x, resolve, reject) {
-    // 抛出循环引用的异常
+    // 循环引用检测, 抛出循环引用的异常
     if (x === promise2) return reject(new TypeError('Chaining cycle detected for promise'));
 
     if (x instanceof MyPromise) {
@@ -118,11 +144,9 @@ function resolvePromise(promise2, x, resolve, reject) {
             }
         } catch (error) {
             if (called) return;
-                        called = true;
+            called = true;
             reject(error);
         }
-
-
     }
     else {
         resolve(x);

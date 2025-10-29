@@ -20,6 +20,7 @@ const deepCopy = (target, map = new WeakMap()) => {
     // if(target === null || (typeof target !== 'object' && typeof target !== 'function')) return target;
     // if(target instanceof RegExp) return new RegExp(target);
     // if(target instanceof Date) return new Date(target);
+    if (map.has(target)) return target;
     const type = getType(target);
     let cloneTarget;
     switch (type) {
@@ -48,19 +49,17 @@ const deepCopy = (target, map = new WeakMap()) => {
         target.forEach((value, key) => {
             cloneTarget.set(deepCopy(key, map), deepCopy(value, map));
         })
-        return cloneTarget;
     }
-
-    if (type === 'Set') {
+    else if (type === 'Set') {
         target.forEach((value) => {
             cloneTarget.add(deepCopy(value, map));
         })
-        return cloneTarget;
     }
-
-    for (const key in target) {
-        if (target.hasOwnProperty(key)) {
-            cloneTarget[key] = deepCopy(target[key], map)
+    else {
+        for (const key in target) {
+            if (target.hasOwnProperty(key)) {
+                cloneTarget[key] = deepCopy(target[key], map)
+            }
         }
     }
      

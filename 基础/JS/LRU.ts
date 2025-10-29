@@ -7,7 +7,7 @@ class LRU {
     private cache: Map<string, any>;
     private maxCount: number;
 
-    constructor (count: number) {
+    constructor(count: number) {
         this.cache = new Map();
         this.maxCount = count;
     }

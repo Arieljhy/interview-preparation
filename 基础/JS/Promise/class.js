@@ -55,3 +55,14 @@ req.request('https://url1.com', { maxNum: 3 });
 req.request('https://url2.com', { maxNum: 2 });
 req.request('https://url3.com', { maxNum: 1 });
 req.request('https://url4.com', { maxNum: 3 });
+
+const runFn = (fn)=> {
+    return new Promise((resolve, reject) => {
+        try {
+            const result = fn();
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
