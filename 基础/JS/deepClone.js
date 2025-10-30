@@ -1,36 +1,57 @@
-function deepClone(target){
-    if(target === null ||  typeof target !== 'object') return target;
-    if(target instanceof RegExp) return new RegExp(target);
-    if(target instanceof Date) return new Date(target);
+const getType = (target) => Object.defineProperty.toString.call(target).slice(8, -1);
 
-    let res = Array.isArray(target) ? [] :{};
-    for(let key in target){
-       if(target.hasOwnProperty(key)){
-        res[key] = deepClone(target[key])
-       }
+const deepClone = (target, map = new WeakMap()) => {
+    if (map.has(target)) return target;
+
+    let cloneTarget;
+    const type = getType(target);
+
+    switch(type) {
+        case 'Object':
+            cloneTarget = {};
+            break;
+        case 'Array':
+            cloneTarget = [];
+            break;
+        case 'Map':
+            cloneTarget = new Map();
+            break;
+        case 'WeakMap':
+            cloneTarget = new WeakMap();
+            break;   
+        case 'Set':
+            cloneTarget = new Set();
+            break; 
+        case 'WeakSet':
+            cloneTarget = new WeakSet();
+            break;
+        case 'Date':
+            return new Date(target);
+        case 'RegExp':
+            return new RegExp(target);                          
+        default:
+            return target;
     }
 
-    return res;
-}
+    map.set(target, cloneTarget);
 
-/** 测试数据 */
-let obj={
-    name:"name",
-    id:1,
-    fn:function(){console.log(this.name)},
-    date:new Date('2023-10-12'),
-    new:{
-        hai:'hai',
-        hello:'hello',
-        arr:[1,2,3,4],
-        obj:obj
+    if (type === 'Map' || type === 'WeakMap') {
+        target.forEach((value, key) => {
+            cloneTarget.set(deepClone(key, map), deepClone(value, map));
+        })
+    }
+    else if (type === 'Set' || type === 'WeakSet') {
+        target.forEach((value) => {
+            cloneTarget.add(deepClone(value, map));
+        })
+    }
+    else {
+        for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                cloneTarget[key] = deepClone(target[key], map);
+            }
+        }
     }
 
+    return cloneTarget;
 }
-let obj1 =JSON.parse(JSON.stringify(obj)) 
-console.log(obj1)
-
-// let objj = deepClone(obj)
-// objj.name = 'Aril'
-// console.log(obj)
-// console.log(objj)

@@ -17,10 +17,8 @@ const getType = (target) => {
 }
 
 const deepCopy = (target, map = new WeakMap()) => {
-    // if(target === null || (typeof target !== 'object' && typeof target !== 'function')) return target;
-    // if(target instanceof RegExp) return new RegExp(target);
-    // if(target instanceof Date) return new Date(target);
     if (map.has(target)) return target;
+
     const type = getType(target);
     let cloneTarget;
     switch (type) {
@@ -33,8 +31,14 @@ const deepCopy = (target, map = new WeakMap()) => {
         case 'Map':
             cloneTarget = new Map();
             break;
+        case 'WeakMap':
+            cloneTarget = new WeakMap();
+            break;
         case 'Set':
             cloneTarget = new Set();
+            break;
+        case 'WeakSet':
+            cloneTarget = new WeakSet();
             break;
         case 'RegExp':
             return new RegExp(target);

@@ -1,6 +1,9 @@
 /**
  * ajax 局部网页更新
+ * 两种方式: XMLHttpRequest 、 fetch
  */
+
+// XMLHttpRequest
 function ajax (url , method , data = {}, callback){
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
@@ -16,3 +19,6 @@ function ajax (url , method , data = {}, callback){
     xhr.send();
 
 }
+
+// fetch 浏览器原生api，支持Promise
+
