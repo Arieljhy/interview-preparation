@@ -1,4 +1,4 @@
-class EventEmitter {
+class EventEmitter1 {
     private events: Map<string, Set<Function>>;
     constructor () {
         this.events = new Map();

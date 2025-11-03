@@ -1,3 +1,7 @@
+type Lanes = any;
+type WorkTag = any;
+type Flags = any;
+
 type Fiber = {
   // 标记 fiber 的类型，即描述的组件类型，如原生标签、函数组件、类组件、Fragment 等。
   // WorkTag 中带 Host 前缀的是跟 dom 相关的，比如：HostComponent 是指 html 原生标签，HostPortal 是指 portal 挂载的 dom。
@@ -54,5 +58,5 @@ type Fiber = {
   lanes: Lanes;
   childLanes: Lanes;
   
-  ...
+  // ...
 };

@@ -1,13 +1,11 @@
-// Vue2 响应式原理实现
-// 步骤：
-
-// 遍历对象每个属性，使用Object.defineProperty将其转换为getter/setter。
-
-// 为每个属性创建一个Dep实例，用于收集依赖（Watcher）和通知更新。
-
-// 在getter中收集依赖，在setter中触发更新。
-
-// 我们同时实现一个Watcher类，用于更新视图或执行回调。
+/**
+ * Vue2 响应式原理实现
+ * 步骤：
+ * 1、遍历对象每个属性，使用Object.defineProperty将其转换为getter/setter。
+ * 2、为每个属性创建一个Dep实例，用于收集依赖（Watcher）和通知更新。
+ * 3、在getter中收集依赖，在setter中触发更新。
+ * 4、我们同时实现一个Watcher类，用于更新视图或执行回调。
+ */
 
 Dep.target = null;
 
