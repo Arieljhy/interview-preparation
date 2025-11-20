@@ -7,6 +7,8 @@
 `useState`：
    - 基础数据的状态管理
    - set的时候，如果值有变化，会触发组件重新渲染
+   - React 17及之前：合成事件中异步，setTimeout/原生事件中同步
+   - React 18：所有场景默认异步（自动批处理）
 
 `useReducer`:
    - 复杂状态逻辑管理
@@ -33,7 +35,7 @@
    - 原因：useContext 订阅了完整的context对象，React通过比较value的**引用**来判断变更
    - 优化：
      - 拆分：使用时，拆分成职责更单一的、更小范围的context；
-     -  传给Provider的value 的值和方法，分别使用 useMemo 和 useCallback 处理
+     - 传给Provider的value 的值和方法，分别使用 useMemo 和 useCallback 处理
 
 `forwardRef`: 
 默认状态下，函数组件上的 ref 会被忽略；forwardRef处理子函数组件，将ref透传，父组件就可以正常使用ref去获取

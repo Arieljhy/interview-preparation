@@ -1,4 +1,6 @@
-Object.defineProperty(data,key,{
+Object.defineProperty(data, key, {
+    enumerable: true,
+    configurable: true,
     get(){
 
     },

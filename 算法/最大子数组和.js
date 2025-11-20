@@ -3,7 +3,7 @@
  * 子数组是数组中的一个连续部分。
  */
 var maxSubArray = function(nums) {
-    const len = nums.length, dp = new Array(len - 1);
+    const len = nums.length, dp = new Array(len);
     dp[0] = nums[0];
     let res = dp[0];
     for (let i = 1; i < len; i++) {

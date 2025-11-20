@@ -9,7 +9,7 @@ const request = (url, limit = 3)=>{
         const retry = () => {
             fetch(url).then(result => resolve(result.json())).catch((error) => {
                 // 不可恢复的错误 不需要重试
-                if (!isShouldRetry(error)) return reject(error);
+                // if (!isShouldRetry(error)) return reject(error);
                 count++;
                 if (count === limit) return reject(error);
                 retry(); 
@@ -18,6 +18,13 @@ const request = (url, limit = 3)=>{
         }
         retry();
     }) 
+}
+
+const retryRequest = (url, limit = 5) =>{
+    return new Promise((resolve, reject) => {
+        fetch(url).then(resolve).catch((error) => limit > 0 ?
+        retryRequest(url, limit-1) : reject(error))
+    })
 }
 
 const isShouldRetry = (error) => {

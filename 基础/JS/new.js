@@ -17,3 +17,17 @@ function myNew(constructor, ...args){
 
 let o = myNew(Boolean);
 console.log(o)
+
+Function.prototype.a = function() {
+    console.log('f-aaaa');
+}
+Function.prototype.b = function() {
+    console.log('f-b');
+}
+Object.prototype.a = function() {
+    console.log('obj-aaaa');
+}
+Object.prototype.b = function() {
+    console.log('obj-b');
+}
+a

@@ -1,31 +1,4 @@
-class LRU{
-    constructor(count){
-        this.cache = new Map();
-        this.maxCount = count;
-    }
-    put(name,value){
-        this.cache.size ===  this.maxCount ? 
-        if(this.cache.size < this.maxCount){
-            if(this.cache.has(name)){
-                let res = this.cache.get(name);
-                this.cache.delete(name);
-                this.cache.set(name,res)
-            }else{
-                this.cache.set(name,value)
-            }
-        }else{
-            this.cache.delete(this.cache.keys().next().value);
-            this.cache.set(name,value);
-        }
-     
-    }
-    get(name){
-        let value = this.cache.get(name);
-        this.cache.delete(name);
-        this.cache.set(name,value);
-        return value;
-    }
-}
+
 /**
  * 输入长度为 n 的一个正整数序列，要求输出序列中最长连号的长度。
 连号指在序列中，从小到大的连续自然数。

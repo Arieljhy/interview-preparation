@@ -3,11 +3,11 @@
  * 
  */
 const debounce = (fn, delay) => {
-    let timer = null;
+    let timer = 0;
     return function(...args) {
         if(timer) clearTimeout(timer);
         timer = setTimeout(() => {
-            fn.apply(this,args)
+            fn.apply(this, args)
         }, delay)
     }
 }

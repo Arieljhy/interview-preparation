@@ -4,5 +4,11 @@
  * @param {number} maxCount 请求最大数
  */
 const retry = async (url, maxCount = 5) => {
-    return await fetch(url).catch(() => maxCount > 0 ? retry(url, maxCount - 1) : Promise.reject());
+    return await fetch(url).catch(
+        () => maxCount > 0 ? retry(url, maxCount - 1) 
+        : Promise.reject());
+}
+
+const retry1 = async (url, maxCount = 5) => {
+    return await fetch(url).catch(() => maxCount > 0 ? retry1(url, maxCount--) : Promise.reject())
 }
