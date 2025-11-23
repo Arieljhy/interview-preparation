@@ -1,6 +1,6 @@
 /**
  * 防抖
- * 
+ * 场景：
  */
 const debounce = (fn, delay) => {
     let timer = 0;

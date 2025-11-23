@@ -1,4 +1,4 @@
-const getType = (target) => Object.defineProperty.toString.call(target).slice(8, -1);
+const getType = (target) => Object.prototype.toString.call(target).slice(8, -1);
 
 const deepClone = (target, map = new WeakMap()) => {
     if (map.has(target)) return target;

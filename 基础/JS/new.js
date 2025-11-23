@@ -7,12 +7,12 @@
  */
 function myNew(constructor, ...args){
     // const newObj = {};
-    // newObj.__proto__ = constructor.prototype;
+    // Object.setPrototypeOf(newObj) = constructor.prototype;
 
     // 创建空对象 并 链接原型链
     const newObj = Object.create(constructor.prototype)
-    const result = constructor.apply(newObj, args);
-    return result instanceof Object ? result : newObj;
+    const res = constructor.apply(newObj, args);
+    return res instanceof Object ? res : newObj;
 }
 
 let o = myNew(Boolean);

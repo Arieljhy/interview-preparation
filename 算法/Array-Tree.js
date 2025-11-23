@@ -24,13 +24,13 @@ let list  = [
 
 // }
 const arrayToTree = (arr, id)=>{
-    return arr.reduce((res,cur)=>{
+    return arr.reduce((res, cur)=>{
         if(cur['pid'] === id){
-            cur.children = arrayToTree(arr,cur.id);
+            cur.children = arrayToTree(arr, cur.id);
             res = res.concat(cur);
         }
         return res;
-    },[])
+    }, [])
 }
 
 // console.log("arrayToTree",tree);
@@ -40,11 +40,11 @@ const arrayToTree = (arr, id)=>{
 //         return res.concat(children && !children.length ? treeToArray(children) : [],args)
 //     },[])
 // }
-let treeArr = arrayToTree(list,0)
+let treeArr = arrayToTree(list, 0)
 const treeToArray = (tree)=>{
-    return tree.reduce((prev,cur) => {
+    return tree.reduce((prev, cur) => {
         let { children , ...args} = cur;
-        return prev.concat(children && children.length !==0? treeToArray(children):[], [args])
+        return prev.concat(children && !children.length ? treeToArray(children): [], [args])
     },[])
 }
 console.log("treeToArray",treeToArray(treeArr));
