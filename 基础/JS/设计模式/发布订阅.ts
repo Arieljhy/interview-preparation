@@ -18,8 +18,12 @@ class EventEmitter1 {
 
     off (eventName: string, callback?: Function) {
         if (!this.events.has(eventName)) return;
-        callback && this.events.get(eventName)!.delete(callback);
-        this.events.delete(eventName);
+        if(callback) {
+            this.events.get(eventName)!.delete(callback);
+        }
+        else {
+            this.events.delete(eventName);
+        }
     } 
     
     once (eventName: string, callback: Function) {
@@ -28,5 +32,11 @@ class EventEmitter1 {
             this.off(eventName, wrapper);
         }
         this.on(eventName, wrapper);
+
+        const wrapper1 = (...args: any[]) => {
+            callback(...args);
+            this.off(eventName, wrapper)
+        }
+        this.on(eventName, wrapper1);
     }
 }

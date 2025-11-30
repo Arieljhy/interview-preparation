@@ -1,6 +1,6 @@
 /**
  * 防抖
- * 场景：
+ * 场景：多次触发，只有最后一次触发时候间隔delay秒之后才会执行
  */
 const debounce = (fn, delay) => {
     let timer = 0;

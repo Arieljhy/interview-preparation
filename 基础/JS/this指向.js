@@ -14,10 +14,7 @@ function b() {
   console.log('b.this', this)
 }
 
-b.apply(() => {
-    console.log('a.this', this)
-}, [])
-    let outerVariable = "我在外部函数中";
+let outerVariable = "我在外部函数中";
 function outerFunction() {
     // let outerVariable = "我在外部函数中";
          outerVariable = "我在外部函数中1111";

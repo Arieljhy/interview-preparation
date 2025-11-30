@@ -9,6 +9,26 @@ const retry = async (url, maxCount = 5) => {
         : Promise.reject());
 }
 
-const retry1 = async (url, maxCount = 5) => {
-    return await fetch(url).catch(() => maxCount > 0 ? retry1(url, maxCount--) : Promise.reject())
+const run = async (asyncRequestFn, retryCount = 3) => {
+    const retry = async (curRetryCount) => {
+        try {
+            const res = await asyncRequestFn();
+            return res;
+        } catch (err) {
+            if (curRetryCount > 0) {
+                return retry(curRetryCount - 1);
+            }
+            else {
+                throw err;
+            }
+        }
+    }
+    return retry(retryCount);
 }
+const asyncFn = () => new Promise(resolve => setTimeout(() => resolve(11111), 20000));
+run(asyncFn).then(res =>{
+    console.log('data', res);
+}).catch(err => {
+    console.log('err', err);
+})
+

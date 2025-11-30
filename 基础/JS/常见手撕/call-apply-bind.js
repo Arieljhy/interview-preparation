@@ -15,6 +15,15 @@ Function.prototype.myBind = function(ctx ,...args){
         return ctx[fn].apply(ctx[fn], args.concat(innerArgs))
     };
 }
+Function.prototype.myBind = function(ctx, ...args) {
+    ctx = ctx || window;
+    const fn = Symbol('fn');
+    ctx[fn] = this;
+
+    return function(...innerArgs) {
+        return ctx[fn].apply(ctx[fn], args.concat(innerArgs))
+    }
+}
 
 Function.prototype.myCall = function(ctx, ...args){
     ctx = ctx || window;
@@ -25,17 +34,6 @@ Function.prototype.myCall = function(ctx, ...args){
     delete ctx[fn];
     return res;
 }
-
-// Function.prototype.myApply = function(context, args){
-//     context = context || window;
-//     let fn = Symbol('fn');
-//     context[fn] = this;
-
-//     const res = Array.isArray(args) ? context[fn](args): context[fn](...args);
-//     delete context[fn];
-//     return res;
-// }
-
 Function.prototype.maApply = function(ctx, args) {
     ctx = ctx || window;
     let fn = Symbol('fn');

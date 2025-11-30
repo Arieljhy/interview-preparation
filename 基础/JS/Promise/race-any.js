@@ -23,7 +23,7 @@ Promise.myAny = (promises) => {
             reason => {
                 errors[index] = reason;
                 errorCount++;
-                if (errorCount === promises.length) reject(new Error('All promises were rejected'));
+                if (errorCount === promises.length) reject(errors);
             })  
         });
     });

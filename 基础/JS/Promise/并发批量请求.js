@@ -19,7 +19,9 @@ const multiRequest = (tasks, maxNum = 6) => {
                     index++;
                     finishedCount++;
                     if (finishedCount < tasks.length) run(); 
-                    else resolve(results);                  
+                    else {
+                        resolve(results); 
+                    }                 
                 })
         }
 

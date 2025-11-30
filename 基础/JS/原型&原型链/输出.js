@@ -1,5 +1,10 @@
 // 问obj是否可以访问到one和two方法
-function obj(){}
-Function.prototype.one = function(){}
-Object.prototype.two = function(){}
-obj = new Obj()
+function Obj(){}
+Function.prototype.one = function(){
+    console.log('one')
+}
+Object.prototype.two = function(){
+     console.log('two')
+}
+let obj = new Obj();
+obj.one()

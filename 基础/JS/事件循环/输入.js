@@ -17,9 +17,9 @@ async1().then(res => console.log(res));
 console.log('script end');
 
 Promise.resolve(1)
-  .then(2)
+  .then('333')
   .then(Promise.resolve(3))
-  .catch(4)
+  .catch('1112')
   .then(res => console.log(res))
 
 setTimeout(() => {

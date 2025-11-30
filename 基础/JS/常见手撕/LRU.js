@@ -9,7 +9,7 @@ class LRU {
     }
 
     put(name, value) {
-        if (this.cache.size >= this.count) {
+        if (this.cache.size >= this.maxCount) {
             const firstKey = this.cache.keys().next().value;
             firstKey && this.cache.delete(firstKey);
         }
@@ -24,23 +24,6 @@ class LRU {
         this.cache.set(name, value);
         return value;
     }
-
-    // get(key: string) {
-    //     if (!this.cache.has(key)) return;
-    //         const value = this.cache.get(key);
-    //         this.cache.delete(key);
-    //         this.cache.set(key, value);
-    //         return value;
-    // }
-
-    // put(key: string, value: any) {
-    //     if (this.cache.size >= this.maxCount) {
-    //         const headKey = this.cache.keys().next().value;
-    //         headKey && this.cache.delete(headKey)
-    //     }
-    //     this.cache.has(key) && this.cache.delete(key);
-    //     this.cache.set(key, value);
-    // }
 }
 
 
