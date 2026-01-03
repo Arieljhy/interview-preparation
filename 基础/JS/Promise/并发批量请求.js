@@ -6,9 +6,8 @@
  */
 const multiRequest = (tasks, maxNum = 6) => {
     return new Promise(resolve => {
-        if (!tasks.length) {
-             return resolve([]);
-        }
+        if (!tasks.length) return resolve([]);
+        
         const results = [];
         let index = 0;
         let finishedCount = 0; // 已完成的请求数
@@ -20,7 +19,7 @@ const multiRequest = (tasks, maxNum = 6) => {
                     finishedCount++;
                     if (finishedCount < tasks.length) run(); 
                     else {
-                        resolve(results); 
+                        return resolve(results); 
                     }                 
                 })
         }
@@ -33,59 +32,33 @@ const multiRequest1 = (tasks, maxNum = 6) => {
     return new Promise(resolve => {
         if (!tasks.length) return resolve([]);
         const res = [];
-        let i = 0, finishedCount = 0;
+        let index = 0, finishedCount = 0;
+
         const run = () => {
-            tasks[i]
-                .then(value => res[i] = {state: 'fulfilled', value})
-                .catch(reason => res[i] = {state: 'rejected', reason})
+            tasks[index].then(value => results[index] = {status: 'success', value})
+                .catch(reason => results[index] = {status: 'success', reason})
                 .finally(() => {
-                    i++;
                     finishedCount++;
-                    if (finishedCount < tasks.length) run();
-                    else resolve(res);
+                    if (finishedCount === tasks.length) {
+                        return resolve(res);
+                    }
+                    else {
+                        run();
+                    }
                 })
         }
-        for (let i = 0; i < Math.min(tasks.length, maxNum); i++) run();
+
+        for (let i = 0; i < Math.min(tasks.length, maxNum); i++) {
+            run();
+        } 
     })
 }
+
 
 const sleep = (delay) => new Promise(resolve => setTimeout(resolve, delay));
     console.time('multiRequest');
     const results = await sleep(5000);
     console.timeEnd('multiRequest');
-
-// // 使用示例和测试代码
-// const createTask = (id, delay, shouldReject = false) => {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             if (shouldReject) {
-//                 reject(`Task ${id} failed`);
-//             } else {
-//                 resolve(`Task ${id} completed`);
-//             }
-//         }, delay);
-//     });
-// }
-// // 测试用例
-// (async () => {
-//     // 创建测试任务
-//     const tasks = [
-//         createTask(1, 1000),
-//         createTask(2, 500),
-//         createTask(3, 800, true), // 这个会失败
-//         createTask(4, 300),
-//         createTask(5, 1200),
-//         createTask(6, 600),
-//         createTask(7, 400),
-//         createTask(8, 900),
-//     ];
-
-//     // console.time('multiRequest');
-//     const results = await multiRequest(tasks, 4);
-//     // console.timeEnd('multiRequest');
-    
-//     console.log('Results:', results);
-// })();
 
 /**
  * 思考🤔

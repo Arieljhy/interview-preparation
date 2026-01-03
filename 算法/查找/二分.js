@@ -50,3 +50,22 @@ const binary1 = (arr, target) => {
     }
     return -1;
 }
+
+
+const binary2 = (arr, target) => {
+    arr.sort((a, b) => a - b);
+    let l = 0, r = arr.length - 1;
+    while (l < r) {
+        const mid = Math.floor((l + r) / 2);
+        if (arr[mid] === target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            l = mid + 1;
+        }
+        else {
+            r = mid - 1;
+        }
+
+    }
+    return -1;
+}

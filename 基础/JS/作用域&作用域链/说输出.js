@@ -12,23 +12,23 @@
 // }
 // test();
 
-// var name = "global";
-// function outer() {
-//     var name = "outer";
-//     function inner() {
-//         console.log(name);
-//     }
-//     return inner;
-// }
-// var func = outer();
-// func();
-
-var a = 1;
-const b = () => {
-    a = 10;
-    console.log(a);
-    return;
-    // function a() {}
+var name = "global";
+function outer() {
+    var name = "outer";
+    function inner() {
+        console.log(name);
+    }
+    return inner;
 }
-b();
-console.log(a);
+var func = outer();
+func();
+
+// var a = 1;
+// const b = () => {
+//     a = 10;
+//     console.log(a);
+//     return;
+//     // function a() {}
+// }
+// b();
+// console.log(a);

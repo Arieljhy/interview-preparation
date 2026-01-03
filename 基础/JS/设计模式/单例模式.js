@@ -13,7 +13,7 @@ class Singleton {
         console.log('这是一个公开的方法');
     }
 }
- 
+
 const singleA = new Singleton();
 const singleB = new Singleton();
  

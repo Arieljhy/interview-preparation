@@ -12,10 +12,7 @@
 //深拷贝
 //JSON.parse(JSON.stringify()) //深层次引用 和 
 
-const getType = (target) => {
-    return Object.prototype.toString.call(target).slice(8, -1)
-}
-
+const getType = (target) => Object.prototype.toString.call(target).slice(8, -1)
 const deepCopy = (target, map = new WeakMap()) => {
     if (map.has(target)) return target;
 
@@ -31,14 +28,8 @@ const deepCopy = (target, map = new WeakMap()) => {
         case 'Map':
             cloneTarget = new Map();
             break;
-        case 'WeakMap':
-            cloneTarget = new WeakMap();
-            break;
         case 'Set':
             cloneTarget = new Set();
-            break;
-        case 'WeakSet':
-            cloneTarget = new WeakSet();
             break;
         case 'RegExp':
             return new RegExp(target);
@@ -61,7 +52,7 @@ const deepCopy = (target, map = new WeakMap()) => {
     }
     else {
         for (const key in target) {
-            if (target.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(target, key)) {
                 cloneTarget[key] = deepCopy(target[key], map)
             }
         }

@@ -8,7 +8,7 @@ let arr = [10, 2, 7, 4, 1, 1, 2, 4, 6, 8, 1, 1, 34, 56, 7, 9, 33];
 let arr1 = [10, 2, 7, 4, 1, 1, 2, 4, 6, 8, 1, 1, 34, 56, 7, 9, 33];
 const quickSort = (arr, left = 0, right = arr.length - 1) => {
    if (left < right) {
-        let pivotIndex = partition(arr, left, right);
+        const pivotIndex = partition(arr, left, right);
         quickSort(arr, left, pivotIndex - 1);
         quickSort(arr, pivotIndex + 1, right);
    }
@@ -26,7 +26,31 @@ const partition = (arr, left, right) => {
     [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]];
     return i + 1;
 }
-console.log(quickSort(arr, 0, arr.length - 1));
+// console.log('ssssss-', quickSort(arr, 0, arr.length - 1));
+
+const quickSort1 = (arr, left = 0, right = arr.length - 1) => {
+    if (left < right) {
+        let pivotIndex = partition1(arr, left, right);
+        quickSort1(arr, pivotIndex + 1, right);
+        quickSort1(arr, left, pivotIndex - 1);
+    }
+    return arr;
+}
+
+const partition1 = (arr, left, right) => {
+    let pivot = arr[right];
+    let i = left - 1;
+    for (let j = left; j < right; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+     [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]];
+     return i + 1;
+}
+console.log('ssssss-', quickSort1(arr, 0, arr.length - 1));
+
 
 const quickSortArray = (nums) => {
     const len = nums.length;
@@ -44,4 +68,4 @@ const quickSortArray = (nums) => {
     }
     return [...quickSortArray(left), pivot, ...quickSortArray(right)];
 }
-console.log(quickSortArray(arr1));
+// console.log(quickSortArray(arr1));

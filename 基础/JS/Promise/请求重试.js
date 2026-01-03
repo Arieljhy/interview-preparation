@@ -23,9 +23,17 @@ const request = (url, limit = 3)=>{
 const retryRequest = (url, limit = 5) =>{
     return new Promise((resolve, reject) => {
         fetch(url).then(resolve).catch((error) => limit > 0 ?
-        retryRequest(url, limit-1) : reject(error))
+        retryRequest(url, limit - 1) : reject(error))
     })
 }
+const retryReq = (url, limit = 3) => {
+    return new Promise((resolve, reject) => {
+        fetch(url).then(resolve)
+        .catch((error) => limit > 0 ? retryReq(url, limit - 1) : reject(error));
+    })
+}
+
+
 
 const isShouldRetry = (error) => {
     // 网络层面发生错误（DNS解析失败 或者 客户端断网）

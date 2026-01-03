@@ -2,21 +2,21 @@
  * @param {string} s
  * @return {boolean}
  */
-var map = new Map().set(")","(").set("]","[").set("}","{"); 
+const s = '[]({})'
 var isValid = function(s) {
-    if(!s.length) return false;
-    let stack = [];
-    for(let i = 0 ; i <s.length ; i++ ){
-        if(s[i] === "(" || s[i] === "{" || s[i] === "["){
-            stack.push(s[i])
+    const map = new Map().set("(",")").set("[","]").set("{","}"); 
+    const stack = [];
+    for (let i = 0; i < s.length; i++) {
+        const char = s[i];
+        if (char === '(' || char === '[' || char === '{') {
+            stack.push(char);
         }
-        else{
-            if(stack[stack.length-1] !== map.get(s[i]) ){
-                 return false
-            }else{
-               stack.pop() 
-            } 
+        else {
+            const curChar = stack[stack.length - 1];
+            if (map.get(curChar) !== char) return;
+            stack.pop();
         }
     }
-    return stack.length === 0 ? true: false
+    return !stack.length;
 };
+console.log(isValid(s))

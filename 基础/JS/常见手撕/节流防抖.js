@@ -5,7 +5,7 @@
 const debounce = (fn, delay) => {
     let timer = 0;
     return function(...args) {
-        if(timer) clearTimeout(timer);
+        clearTimeout(timer);
         timer = setTimeout(() => {
             fn.apply(this, args)
         }, delay)
@@ -15,12 +15,12 @@ const debounce = (fn, delay) => {
 /**
  * 节流
  * 节流就是连续触发的事件每隔规定时间只执行一次。
- * 场景：
+ * 场景：监听滚动
  *  */ 
 const throttle = (fn, delay) => {
     let time = 0;
     return function(...args) {
-        let now = new Date().getTime();
+        let now = Date.now();
         if (now - time > delay) {
             time = now;
             fn.apply(this, args);   

@@ -19,7 +19,7 @@ class LRU {
 
     get(name) {
         if (!this.cache.has(name)) return;
-        let value = this.cache.get(name);
+        const value = this.cache.get(name);
         this.cache.delete(name);
         this.cache.set(name, value);
         return value;
